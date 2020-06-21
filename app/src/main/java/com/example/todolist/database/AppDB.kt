@@ -1,13 +1,20 @@
-package com.example.todolist
+package com.example.todolist.database
 
 import android.content.Context
+import android.util.Log
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
+import androidx.room.TypeConverters
+import com.example.todolist.Converters
+import com.example.todolist.model.Shopping
+import com.example.todolist.model.ToDo
 
-@Database(entities = [ToDo::class], version = 1, exportSchema = false)
+@Database(entities = [ToDo::class, Shopping::class], version = 3, exportSchema = false)
+@TypeConverters(Converters::class)
 abstract class AppDB: RoomDatabase() {
-    abstract val toDoModel: ToDoDao
+    abstract val toDoDao: ToDoDao
+    abstract val shoppingDao: ShoppingDao
 
     companion object {
         @Volatile
@@ -15,9 +22,10 @@ abstract class AppDB: RoomDatabase() {
 
         fun getInstance(context: Context): AppDB {
             synchronized(this) {
-                var instance = INSTANCE
+                var instance =
+                    INSTANCE
                 if (instance == null) {
-                    Room.databaseBuilder(context.applicationContext,
+                    instance = Room.databaseBuilder(context.applicationContext,
                         AppDB::class.java,
                         "to_do_list_database")
                         .fallbackToDestructiveMigration()
