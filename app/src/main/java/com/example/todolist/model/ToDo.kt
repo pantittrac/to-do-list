@@ -1,10 +1,10 @@
-package com.example.todolist
+package com.example.todolist.model
 
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
-import java.time.LocalDateTime
-import java.util.*
+import java.time.LocalDate
+import java.time.LocalTime
 
 @Entity(tableName = "to_do_list")
 data class ToDo(
@@ -15,8 +15,11 @@ data class ToDo(
     @ColumnInfo(name = "to_do_title")
     var toDoTitle: String,
 
+    @ColumnInfo(name = "to_do_date")
+    var toDoDate: LocalDate ?= null, //change to date later
+
     @ColumnInfo(name = "to_do_time")
-    var toDoTime: LocalDateTime ?= null,
+    var toDoTime: LocalTime ?= null, //change to time later
 
     @ColumnInfo(name = "to_do_status")
     var toDoStatus: Boolean = false
