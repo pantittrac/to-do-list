@@ -7,7 +7,7 @@ import android.widget.CheckBox
 import android.widget.TextView
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.example.todolist.OnItemClickListener
+import com.example.todolist.itemevent.OnItemClickListener
 import com.example.todolist.R
 import com.example.todolist.diffutil.ShoppingListDiffCallback
 import com.example.todolist.model.Shopping
@@ -33,8 +33,6 @@ class ShoppingListAdapter(private var listener: OnItemClickListener): ListAdapte
         private val checkBox: CheckBox = itemView.findViewById(R.id.shopping_item_checkbox)
 
         init {
-            itemView.setOnClickListener { listener.onItemClick(adapterPosition) }
-
             checkBox.setOnClickListener { listener.onCheckBoxClick(adapterPosition) }
         }
 

@@ -1,4 +1,4 @@
-package com.example.todolist
+package com.example.todolist.itemevent
 
 import android.content.Context
 import android.graphics.Canvas
@@ -10,6 +10,7 @@ import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.ItemTouchHelper.*
 import androidx.recyclerview.widget.RecyclerView
+import com.example.todolist.R
 
 class SwipeController(private val listener: OnItemClickListener, private val context: Context): ItemTouchHelper.Callback() {
 
@@ -57,14 +58,18 @@ class SwipeController(private val listener: OnItemClickListener, private val con
         pText.isAntiAlias = true
 
         if (dX < 0) {
-            p.color = ContextCompat.getColor(context, R.color.delete)
+            p.color = ContextCompat.getColor(context,
+                R.color.delete
+            )
             rectF = RectF(itemView.right + (dX / 4), itemView.top + padding, itemView.right - padding, itemView.bottom - padding)
 
             c.drawRoundRect(rectF, round, round, p)
             c.drawText("DELETE", rectF.centerX(), rectF.centerY() + 20, pText)
 
         } else if (dX > 0) {
-            p.color = ContextCompat.getColor(context, R.color.edit)
+            p.color = ContextCompat.getColor(context,
+                R.color.edit
+            )
             rectF = RectF(itemView.left + padding, itemView.top + padding, itemView.left + (dX / 4), itemView.bottom - padding)
 
             c.drawRoundRect(rectF, round, round, p)

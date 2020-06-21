@@ -11,8 +11,8 @@ import android.widget.Toast
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.ItemTouchHelper
-import com.example.todolist.OnItemClickListener
-import com.example.todolist.SwipeController
+import com.example.todolist.itemevent.OnItemClickListener
+import com.example.todolist.itemevent.SwipeController
 import com.example.todolist.adapter.ToDoListAdapter
 import com.example.todolist.database.AppDB
 import com.example.todolist.database.ToDoDao
@@ -48,10 +48,8 @@ class ToDoListFragment : Fragment() {
                 toDoList = database.loadToDoList()
             }
 
-            val listener = object : OnItemClickListener {
-                override fun onItemClick(position: Int) {
-                    Toast.makeText(activity, "Just click ${position}", Toast.LENGTH_LONG).show()
-                }
+            val listener = object :
+                OnItemClickListener {
 
                 override fun onCheckBoxClick(position: Int) {
                     uiScope.launch {
@@ -90,7 +88,12 @@ class ToDoListFragment : Fragment() {
 
             binding.toDoList.adapter = adapter
 
-            var itemTouchHelper = ItemTouchHelper(SwipeController(listener, application))
+            var itemTouchHelper = ItemTouchHelper(
+                SwipeController(
+                    listener,
+                    application
+                )
+            )
             itemTouchHelper.attachToRecyclerView(binding.toDoList)
 
             toDoList.observe(this@ToDoListFragment, Observer {

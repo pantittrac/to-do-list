@@ -7,7 +7,7 @@ import android.widget.CheckBox
 import androidx.recyclerview.widget.ListAdapter
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import com.example.todolist.OnItemClickListener
+import com.example.todolist.itemevent.OnItemClickListener
 import com.example.todolist.R
 import com.example.todolist.diffutil.ToDoListDiffCallback
 import com.example.todolist.model.ToDo
@@ -29,7 +29,6 @@ class ToDoListAdapter(private val listener: OnItemClickListener): ListAdapter<To
         private val dateTime: TextView = itemView.findViewById(R.id.to_do_item_datetime)
 
         init {
-            itemView.setOnClickListener { listener.onItemClick(adapterPosition) }
             checkBox.setOnClickListener { listener.onCheckBoxClick(adapterPosition) }
         }
 

@@ -1,7 +1,6 @@
-package com.example.todolist
+package com.example.todolist.itemevent
 
 interface OnItemClickListener {
-    fun onItemClick(position: Int)
     fun onCheckBoxClick(position: Int)
     fun swipeRight(position: Int)
     fun swipeLeft(position: Int)

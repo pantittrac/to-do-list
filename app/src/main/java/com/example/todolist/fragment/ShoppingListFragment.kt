@@ -10,8 +10,8 @@ import android.view.ViewGroup
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.ItemTouchHelper
-import com.example.todolist.OnItemClickListener
-import com.example.todolist.SwipeController
+import com.example.todolist.itemevent.OnItemClickListener
+import com.example.todolist.itemevent.SwipeController
 import com.example.todolist.adapter.ShoppingListAdapter
 import com.example.todolist.database.AppDB
 import com.example.todolist.database.ShoppingDao
@@ -49,9 +49,6 @@ class ShoppingListFragment : Fragment() {
 
             val listener = object :
                 OnItemClickListener {
-                override fun onItemClick(position: Int) {
-                    TODO("Not yet implemented")
-                }
 
                 override fun onCheckBoxClick(position: Int) {
                     uiScope.launch {
@@ -89,7 +86,12 @@ class ShoppingListFragment : Fragment() {
 
             binding.shoppingItem.adapter = adapter
 
-            var itemTouchHelper = ItemTouchHelper(SwipeController(listener, application))
+            var itemTouchHelper = ItemTouchHelper(
+                SwipeController(
+                    listener,
+                    application
+                )
+            )
             itemTouchHelper.attachToRecyclerView(binding.shoppingItem)
 
             shoppingList.observe(this@ShoppingListFragment, Observer {
