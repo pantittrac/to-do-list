@@ -3,4 +3,13 @@
     <color name="colorPrimary">#008577</color>
     <color name="colorPrimaryDark">#00574B</color>
     <color name="colorAccent">#D81B60</color>
+
+    <color name="mintTulip">#C7F2E1</color>
+    <color name="picasso">#FAEE8C</color>
+    <color name="tacao">#F3AF7F</color>
+
+    <color name="item">#E8DDCB</color>
+    <color name="edit">#F5B338</color>
+    <color name="delete">#EB5837</color>
+    <color name="navy">#102550</color>
 </resources>
